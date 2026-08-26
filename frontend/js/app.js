@@ -59,6 +59,9 @@ const locationSelect =
 const weatherResult =
     document.getElementById("weatherResult");
 
+const forecastResult =
+    document.getElementById("forecastResult");
+
 let currentWeather = null;
 
 
@@ -162,7 +165,11 @@ locationSelect.addEventListener(
 currentWeather = data.weather;
 
 displayWeather(
-    currentWeather
+    data.weather
+);
+
+await loadForecast(
+    coordinates
 );
 
 
@@ -417,7 +424,7 @@ const conditions = {
 
             <div class="loading-message">
 
-                🌱 Analyzing your growing
+                Analyzing your growing
                 conditions...
 
             </div>
@@ -463,9 +470,10 @@ const conditions = {
 
 
             displayRecommendations(
-                data.recommendations
-            );
-
+            data.recommendations,
+            data.weatherAdvisory,
+            data.forecastAdvisory
+        );
 
         } catch (error) {
 
@@ -503,9 +511,10 @@ const conditions = {
 // =====================================================
 
 function displayRecommendations(
-    recommendations
+    recommendations,
+    weatherAdvisory,
+    forecastAdvisory
 ) {
-
     if (
         !recommendations ||
         recommendations.length === 0
@@ -516,7 +525,7 @@ function displayRecommendations(
             <div class="no-results">
 
                 <h3>
-                    🌱 No suitable crops found
+                    No suitable crops found
                 </h3>
 
                 <p>
@@ -531,30 +540,141 @@ function displayRecommendations(
         return;
     }
 
-
     let html = `
 
-        <div class="results-header">
+    <div class="results-header">
 
-            <p class="eyebrow">
-                YOUR RESULTS
-            </p>
+        <p class="eyebrow">
+            YOUR RESULTS
+        </p>
 
-            <h2>
-                🌱 Recommended Crops
-            </h2>
+        <h2>
+            Recommended Crops
+        </h2>
+
+        <p>
+            Based on your current growing conditions.
+        </p>
+
+    </div>
+`;
+
+// Current weather advisory
+if (weatherAdvisory) {
+
+    let icon = "🌤️";
+
+    if (weatherAdvisory.level === "Monitor") {
+        icon = "⚠️";
+    }
+
+    if (weatherAdvisory.level === "Risk") {
+        icon = "🔴";
+    }
+
+    if (weatherAdvisory.level === "Good") {
+        icon = "✅";
+    }
+
+    html += `
+
+        <div class="weather-advisory">
+
+            <h3>
+                ${icon}
+                Current Weather Advisory
+            </h3>
 
             <p>
-                Based on your current growing
-                conditions.
+                ${weatherAdvisory.message}
             </p>
 
         </div>
 
+    `;
 
-        <div class="crop-results">
+}
+
+// Current weather advisory
+if (weatherAdvisory) {
+
+    let icon = "🌤️";
+
+    if (weatherAdvisory.level === "Monitor") {
+        icon = "⚠️";
+    }
+
+    if (weatherAdvisory.level === "Risk") {
+        icon = "🔴";
+    }
+
+    if (weatherAdvisory.level === "Good") {
+        icon = "✅";
+    }
+
+    html += `
+
+        <div class="weather-advisory">
+
+            <h3>
+                ${icon}
+                Current Weather Advisory
+            </h3>
+
+            <p>
+                ${weatherAdvisory.message}
+            </p>
+
+        </div>
 
     `;
+
+}
+
+// Extended forecast advisory
+if (forecastAdvisory) {
+
+    let icon = "🌦️";
+
+    if (forecastAdvisory.level === "Monitor") {
+        icon = "⚠️";
+    }
+
+    if (forecastAdvisory.level === "Risk") {
+        icon = "🔴";
+    }
+
+    if (forecastAdvisory.level === "Good") {
+        icon = "✅";
+    }
+
+    html += `
+
+        <div class="forecast-advisory">
+
+            <h3>
+                ${icon}
+                5-Day Weather Advisory
+            </h3>
+
+            <p>
+                ${forecastAdvisory.message}
+            </p>
+
+        </div>
+
+    `;
+
+}
+
+
+html += `
+
+    <div class="crop-results">
+`;
+
+
+ 
 
 
     recommendations.forEach(
@@ -645,11 +765,25 @@ function displayRecommendations(
                 crop.factors.forEach(
                     (factor) => {
 
-                        const icon =
-                            factor.status ===
-                            "Suitable"
-                                ? "✅"
-                                : "❌";
+                        let icon;
+
+                        if (factor.status === "Suitable") {
+
+                            icon = "✅";
+
+                        } else if (factor.status === "Monitor") {
+
+                            icon = "⚠️";
+
+                        } else if (factor.status === "Risk") {
+
+                            icon = "🔴";
+
+                        } else {
+
+                            icon = "❌";
+
+                        }
 
 
                         html += `
@@ -705,3 +839,333 @@ function displayRecommendations(
     result.innerHTML = html;
 
 }
+
+async function loadForecast(coordinates) {
+
+    forecastResult.innerHTML = `
+        <p>
+            Loading forecast...
+        </p>
+    `;
+
+    try {
+
+        const response = await fetch(
+            `http://localhost:5000/api/weather/forecast?lat=${coordinates.latitude}&lon=${coordinates.longitude}`
+        );
+
+        const data =
+            await response.json();
+
+        if (!data.success) {
+
+            throw new Error(
+                data.message
+            );
+
+        }
+
+        displayForecast(
+            data.forecast
+        );
+
+    } catch (error) {
+
+        console.error(error);
+
+        forecastResult.innerHTML = `
+            <div class="error-message">
+
+                Unable to retrieve
+                weather forecast.
+
+            </div>
+        `;
+
+    }
+
+}
+
+function displayForecast(forecast) {
+
+    if (!forecast || forecast.length === 0) {
+
+        forecastResult.innerHTML = `
+            <p>
+                No forecast information available.
+            </p>
+        `;
+
+        return;
+    }
+
+    let html = `
+        <div class="forecast-grid">
+    `;
+
+    forecast.forEach(day => {
+
+        let icon = "🌤️";
+
+        const condition =
+            day.weather.toLowerCase();
+
+        if (condition.includes("thunderstorm")) {
+
+            icon = "⛈️";
+
+        } else if (condition.includes("rain")) {
+
+            icon = "🌧️";
+
+        } else if (condition.includes("cloud")) {
+
+            icon = "☁️";
+
+        } else if (condition.includes("clear")) {
+
+            icon = "☀️";
+
+        }
+
+        const formattedDate =
+            new Date(day.date)
+                .toLocaleDateString(
+                    "en-PH",
+                    {
+                        weekday: "short",
+                        month: "short",
+                        day: "numeric"
+                    }
+                );
+
+        html += `
+
+            <div class="forecast-card">
+
+                <div class="forecast-date">
+                    ${formattedDate}
+                </div>
+
+                <div class="forecast-icon">
+                    ${icon}
+                </div>
+
+                <h3>
+                    ${Math.round(
+                        day.temperature
+                    )}°C
+                </h3>
+
+                <p>
+                    ${day.description}
+                </p>
+
+                <div class="forecast-details">
+
+                    <span>
+                        ${day.humidity}%
+                    </span>
+
+                    <span>
+                        ${day.rainfall} mm
+                    </span>
+
+                    <span>
+                        ${day.windSpeed} m/s
+                    </span>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+    html += `
+        </div>
+    `;
+
+    forecastResult.innerHTML = html;
+}
+
+// ==========================================
+// PLANTING CALENDAR
+// ==========================================
+
+const calendarResult =
+    document.getElementById("calendarResult");
+
+
+async function loadPlantingCalendar() {
+
+    calendarResult.innerHTML = `
+        <p>
+            Loading planting calendar...
+        </p>
+    `;
+
+    try {
+
+        const response = await fetch(
+            "http://localhost:5000/api/calendar"
+        );
+
+        const data =
+            await response.json();
+
+
+        if (!data.success) {
+
+            throw new Error(
+                "Unable to load planting calendar."
+            );
+
+        }
+
+
+        displayPlantingCalendar(
+            data.calendar
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Planting Calendar Error:",
+            error
+        );
+
+
+        calendarResult.innerHTML = `
+
+            <div class="error-message">
+
+                Unable to load
+                planting calendar.
+
+                <br><br>
+
+                Please make sure the
+                Build & Bloom server
+                is running.
+
+            </div>
+
+        `;
+
+    }
+
+}
+
+
+function displayPlantingCalendar(calendar) {
+
+    if (!calendar || calendar.length === 0) {
+
+        calendarResult.innerHTML = `
+
+            <div class="calendar-empty">
+
+                <div class="calendar-empty-icon">
+                    ---
+                </div>
+
+                <h3>
+                    Planting Calendar
+                </h3>
+
+                <p>
+                    Planting schedule information
+                    will appear here once the
+                    agricultural data has been added.
+                </p>
+
+            </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    let html = `
+
+        <div class="calendar-grid">
+
+    `;
+
+
+    calendar.forEach(item => {
+
+        html += `
+
+            <div class="calendar-card">
+
+                <div class="calendar-card-icon">
+                    
+                </div>
+
+                <div class="calendar-card-content">
+
+                    <h3>
+                        ${item.crop_name}
+                    </h3>
+
+                    <p class="calendar-location">
+                        ${item.location}
+                    </p>
+
+                    <div class="calendar-info">
+
+                        <div>
+
+                            <span>
+                                Planting Period
+                            </span>
+
+                            <strong>
+                                ${item.planting_month}
+                            </strong>
+
+                        </div>
+
+                        <div>
+
+                            <span>
+                                Season
+                            </span>
+
+                            <strong>
+                                ${item.season || "Not specified"}
+                            </strong>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        `;
+
+    });
+
+
+    html += `
+
+        </div>
+
+    `;
+
+
+    calendarResult.innerHTML = html;
+
+}
+
+
+// Load calendar when page opens
+loadPlantingCalendar();

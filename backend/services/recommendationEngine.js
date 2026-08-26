@@ -10,9 +10,14 @@ function calculateCompatibility(userConditions, crop) {
      */
     const cropSoils = crop.soil_type
         .toLowerCase()
-        .split(",");
+        .split(",")
+        .map(soil => soil.trim());
 
-    if (cropSoils.includes(userConditions.soil.toLowerCase())) {
+    if (
+        cropSoils.includes(
+            userConditions.soil.toLowerCase().trim()
+        )
+    ) {
 
         score += 25;
 
@@ -39,9 +44,14 @@ function calculateCompatibility(userConditions, crop) {
      */
     const cropWater = crop.water_requirement
         .toLowerCase()
-        .split(",");
+        .split(",")
+        .map(water => water.trim());
 
-    if (cropWater.includes(userConditions.water.toLowerCase())) {
+    if (
+        cropWater.includes(
+            userConditions.water.toLowerCase().trim()
+        )
+    ) {
 
         score += 20;
 
@@ -67,8 +77,12 @@ function calculateCompatibility(userConditions, crop) {
      * Weight: 15%
      */
     if (
-        crop.sunlight_requirement.toLowerCase() ===
-        userConditions.sunlight.toLowerCase()
+        crop.sunlight_requirement
+            .toLowerCase()
+            .trim() ===
+        userConditions.sunlight
+            .toLowerCase()
+            .trim()
     ) {
 
         score += 15;
@@ -94,12 +108,18 @@ function calculateCompatibility(userConditions, crop) {
      * TEMPERATURE
      * Weight: 15%
      */
-    const temperature =
+    const userTemperature =
         Number(userConditions.temperature);
 
+    const minTemperature =
+        Number(crop.min_temperature);
+
+    const maxTemperature =
+        Number(crop.max_temperature);
+
     if (
-        temperature >= Number(crop.min_temperature) &&
-        temperature <= Number(crop.max_temperature)
+        userTemperature >= minTemperature &&
+        userTemperature <= maxTemperature
     ) {
 
         score += 15;
@@ -123,25 +143,27 @@ function calculateCompatibility(userConditions, crop) {
 
     /*
      * ENVIRONMENT
-     * Weight: 10%
+     * Weight: 5%
      */
-    const environments =
-        crop.environment
-            .toLowerCase()
-            .split(",");
+    const environments = crop.environment
+        .toLowerCase()
+        .split(",")
+        .map(environment => environment.trim());
 
     if (
         environments.includes(
-            userConditions.environment.toLowerCase()
+            userConditions.environment
+                .toLowerCase()
+                .trim()
         )
     ) {
 
-        score += 10;
+        score += 5;
 
         factors.push({
             name: "Environment",
             status: "Suitable",
-            points: 10
+            points: 5
         });
 
     } else {
@@ -156,15 +178,116 @@ function calculateCompatibility(userConditions, crop) {
 
 
     /*
-     * LOCATION
-     *
-     * For now, location is recorded but
-     * not yet scored.
-     *
-     * Weather integration will contribute
-     * additional decision support later.
+     * WEATHER
+     * Weight: 10%
      */
 
+    const weather =
+        userConditions.weather;
+
+    if (weather) {
+
+        let weatherScore = 10;
+
+        let weatherStatus = "Suitable";
+
+        const currentWeatherTemperature =
+            Number(weather.temperature);
+
+        const rainfall =
+            Number(weather.rainfall);
+
+        const weatherCondition =
+            weather.weather
+                ? weather.weather.toLowerCase()
+                : "";
+
+
+        /*
+         * Check weather temperature
+         *
+         * We use the crop's temperature
+         * requirements as reference.
+         */
+
+        if (
+            currentWeatherTemperature < minTemperature ||
+            currentWeatherTemperature > maxTemperature
+        ) {
+
+            weatherScore = 5;
+
+            weatherStatus = "Monitor";
+
+        }
+
+
+        /*
+         * Heavy rainfall
+         */
+
+        if (rainfall >= 10) {
+
+            weatherScore = 0;
+
+            weatherStatus = "Risk";
+
+        }
+
+
+        /*
+         * Rain condition
+         */
+
+        if (
+            weatherCondition.includes("thunderstorm")
+        ) {
+
+            weatherScore = 0;
+
+            weatherStatus = "Risk";
+
+        }
+
+
+        if (
+            weatherCondition.includes("rain") &&
+            rainfall > 0 &&
+            weatherScore > 0
+        ) {
+
+            weatherScore = Math.min(
+                weatherScore,
+                5
+            );
+
+            weatherStatus = "Monitor";
+
+        }
+
+
+        score += weatherScore;
+
+        factors.push({
+            name: "Weather",
+            status: weatherStatus,
+            points: weatherScore
+        });
+
+    } else {
+
+        factors.push({
+            name: "Weather",
+            status: "Unavailable",
+            points: 0
+        });
+
+    }
+
+
+    /*
+     * FINAL RESULT
+     */
 
     let result;
 
@@ -195,6 +318,233 @@ function calculateCompatibility(userConditions, crop) {
 }
 
 
+function generateWeatherAdvisory(weather) {
+
+
+
+    if (!weather) {
+
+        return {
+            level: "Unavailable",
+            message:
+                "Weather information is currently unavailable."
+        };
+
+    }
+
+    const temperature =
+        Number(weather.temperature);
+
+    const rainfall =
+        Number(weather.rainfall);
+
+    const condition =
+        weather.weather
+            ? weather.weather.toLowerCase()
+            : "";
+
+
+    // Thunderstorm
+    if (condition.includes("thunderstorm")) {
+
+        return {
+            level: "Risk",
+            message:
+                "Thunderstorm conditions are detected. Monitor weather updates and protect crops where possible."
+        };
+
+    }
+
+
+    // Heavy rainfall
+    if (rainfall >= 10) {
+
+        return {
+            level: "Risk",
+            message:
+                "Heavy rainfall is detected. Monitor drainage and possible flooding risks."
+        };
+
+    }
+
+
+    // Rain
+    if (
+        condition.includes("rain") &&
+        rainfall > 0
+    ) {
+
+        return {
+            level: "Monitor",
+            message:
+                "Rainfall is currently occurring. Monitor rainfall conditions and avoid excessive watering."
+        };
+
+    }
+
+
+    // High temperature
+    if (temperature >= 35) {
+
+        return {
+            level: "Monitor",
+            message:
+                "High temperature is detected. Ensure adequate water availability and monitor crops for heat stress."
+        };
+
+    }
+
+
+    // Low temperature
+    if (temperature <= 15) {
+
+        return {
+            level: "Monitor",
+            message:
+                "Low temperature is detected. Monitor crops for possible temperature stress."
+        };
+
+    }
+
+
+    // Normal conditions
+    return {
+        level: "Good",
+        message:
+            "Current weather conditions are generally favorable. Continue monitoring weather changes."
+    };
+
+}
+
+function generateForecastAdvisory(forecast) {
+
+    if (!forecast || forecast.length === 0) {
+
+        return {
+            level: "Unavailable",
+            message:
+                "Extended weather forecast is currently unavailable."
+        };
+
+    }
+
+
+    let rainyDays = 0;
+    let hotDays = 0;
+    let heavyRainDays = 0;
+
+
+    forecast.forEach(day => {
+
+        const temperature =
+            Number(day.temperature);
+
+        const rainfall =
+            Number(day.rainfall);
+
+        const weather =
+            day.weather
+                ? day.weather.toLowerCase()
+                : "";
+
+
+        if (
+            weather.includes("rain") ||
+            rainfall > 0
+        ) {
+
+            rainyDays++;
+
+        }
+
+
+        if (temperature >= 35) {
+
+            hotDays++;
+
+        }
+
+
+        if (rainfall >= 10) {
+
+            heavyRainDays++;
+
+        }
+
+    });
+
+
+    /*
+     * Heavy rainfall warning
+     */
+
+    if (heavyRainDays >= 2) {
+
+        return {
+
+            level: "Risk",
+
+            message:
+                "Heavy rainfall is expected on multiple forecast days. Monitor drainage, flooding risks, and avoid excessive irrigation."
+
+        };
+
+    }
+
+
+    /*
+     * Several rainy days
+     */
+
+    if (rainyDays >= 3) {
+
+        return {
+
+            level: "Monitor",
+
+            message:
+                "Rainy conditions are expected on several forecast days. Monitor soil moisture, drainage, and crop conditions."
+
+        };
+
+    }
+
+
+    /*
+     * High temperature
+     */
+
+    if (hotDays >= 2) {
+
+        return {
+
+            level: "Monitor",
+
+            message:
+                "High temperatures are expected on several forecast days. Ensure adequate water availability and monitor crops for heat stress."
+
+        };
+
+    }
+
+
+    /*
+     * Generally favorable
+     */
+
+    return {
+
+        level: "Good",
+
+        message:
+            "The upcoming forecast shows generally manageable weather conditions. Continue monitoring weather changes."
+
+    };
+
+}
+
 module.exports = {
-    calculateCompatibility
+    calculateCompatibility,
+    generateWeatherAdvisory,
+    generateForecastAdvisory
 };

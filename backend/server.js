@@ -13,7 +13,7 @@ app.use(express.json());
 
 app.get("/", (req, res) => {
     res.json({
-        message: "Welcome to Build and Bloom API 🌱"
+        message: "Welcome to Build and Bloom API"
     });
 });
 
@@ -26,3 +26,12 @@ const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
     console.log(`Build and Bloom server running on port ${PORT}`);
 });
+
+const calendarRoutes =
+    require("./routes/calendarRoutes");
+
+app.use(
+    "/api/calendar",
+    calendarRoutes
+);
+
