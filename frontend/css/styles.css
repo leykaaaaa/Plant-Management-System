@@ -1,0 +1,271 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f7f8f2;
+    color: #26352a;
+}
+
+.navbar {
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7%;
+    background: white;
+    border-bottom: 1px solid #e4e8df;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+.navbar nav {
+    display: flex;
+    gap: 30px;
+}
+
+.navbar a {
+    color: #344238;
+    text-decoration: none;
+}
+
+.hero {
+    min-height: 550px;
+    display: flex;
+    align-items: center;
+    padding: 80px 10%;
+    background: #e9f1df;
+}
+
+.hero-content {
+    max-width: 650px;
+}
+
+.eyebrow {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: 64px;
+    line-height: 1.05;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    display: block;
+}
+
+.hero p {
+    font-size: 18px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+button {
+    border: none;
+    padding: 14px 24px;
+    border-radius: 8px;
+    background: #557a45;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+.recommendation-section {
+    max-width: 900px;
+    margin: auto;
+    padding: 90px 30px;
+}
+
+.section-heading {
+    margin-bottom: 40px;
+}
+
+.section-heading h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+}
+
+form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 25px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input,
+select {
+    padding: 13px;
+    border: 1px solid #ccd4c6;
+    border-radius: 7px;
+    background: white;
+    font-size: 15px;
+}
+
+form button {
+    grid-column: 1 / -1;
+    justify-self: start;
+}
+
+#result {
+    margin-top: 40px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px;
+    background: #26352a;
+    color: white;
+}
+
+.results-header {
+    margin-bottom: 25px;
+}
+
+.results-header h2 {
+    font-size: 32px;
+    margin-bottom: 10px;
+}
+
+.crop-results {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.crop-card {
+    display: flex;
+    gap: 20px;
+    padding: 25px;
+    background: white;
+    border: 1px solid #dfe6da;
+    border-radius: 12px;
+}
+
+.crop-ranking {
+    font-size: 20px;
+    font-weight: bold;
+    min-width: 40px;
+}
+
+.crop-info {
+    flex: 1;
+}
+
+.crop-info h3 {
+    font-size: 24px;
+    margin-bottom: 8px;
+}
+
+.crop-info p {
+    color: #657267;
+    line-height: 1.6;
+}
+
+.compatibility {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.compatibility strong {
+    font-size: 32px;
+}
+
+.compatibility span {
+    padding: 7px 12px;
+    border-radius: 20px;
+    background: #edf4e8;
+    font-weight: bold;
+}
+
+.factor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.factor {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    background: #f7f8f2;
+    border-radius: 6px;
+}
+
+.error-message {
+    padding: 20px;
+    border-radius: 10px;
+    background: #fff1f1;
+}
+
+.weather-section {
+    max-width: 900px;
+    margin: auto;
+    padding: 80px 30px;
+}
+
+.weather-card {
+    padding: 30px;
+    background: white;
+    border: 1px solid #dfe6da;
+    border-radius: 15px;
+}
+
+.weather-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.weather-temperature {
+    font-size: 48px;
+    font-weight: bold;
+}
+
+.weather-condition {
+    font-size: 18px;
+    text-transform: capitalize;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+}
+
+.weather-detail {
+    padding: 15px;
+    background: #f7f8f2;
+    border-radius: 8px;
+}
+
+.weather-detail strong {
+    display: block;
+    font-size: 20px;
+    margin-top: 5px;
+}
