@@ -1,0 +1,563 @@
+/* =====================================================
+   BUILD & BLOOM - CROP ASSESSMENT
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f5f8f5;
+    color: #173f35;
+}
+
+
+/* =====================================================
+   PAGE
+   ===================================================== */
+
+.assessment-page,
+main {
+    min-height: calc(100vh - 70px);
+}
+
+
+/* =====================================================
+   ASSESSMENT SECTION
+   ===================================================== */
+
+.recommendation-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 70px 30px;
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.section-heading {
+    max-width: 750px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.eyebrow {
+    margin-bottom: 10px;
+    color: #4f8068;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.section-heading h1 {
+    margin: 0;
+    color: #173f35;
+    font-size: clamp(2rem, 5vw, 3.2rem);
+    line-height: 1.15;
+}
+
+.section-heading p:last-child {
+    margin-top: 15px;
+    color: #6b7280;
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   FORM
+   ===================================================== */
+
+.recommendation-form {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px 22px;
+
+    max-width: 800px;
+    margin: 0 auto;
+
+    padding: 32px;
+
+    background: #ffffff;
+    border: 1px solid #e2ebe5;
+    border-radius: 22px;
+
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.05);
+}
+
+.recommendation-form label {
+    display: block;
+    margin-bottom: -10px;
+
+    color: #285747;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.recommendation-form select {
+    width: 100%;
+    padding: 13px 15px;
+
+    border: 1px solid #d7e3dc;
+    border-radius: 10px;
+
+    background: #f9fbfa;
+    color: #285747;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+
+    outline: none;
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.recommendation-form select:focus {
+    border-color: #5d9275;
+    background: #ffffff;
+    box-shadow: 0 0 0 3px rgba(93, 146, 117, 0.12);
+}
+
+
+/* =====================================================
+   BUTTON
+   ===================================================== */
+
+.primary-btn {
+    grid-column: 1 / -1;
+
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px 20px;
+
+    border: none;
+    border-radius: 11px;
+
+    background: #285747;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 0.95rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.primary-btn:hover {
+    background: #1f4638;
+    transform: translateY(-1px);
+}
+
+.primary-btn:active {
+    transform: translateY(0);
+}
+
+
+/* =====================================================
+   WEATHER RESULT
+   ===================================================== */
+
+#weatherResult,
+#forecastResult,
+#result {
+    max-width: 1000px;
+    margin: 25px auto 0;
+}
+
+
+/* =====================================================
+   WEATHER CARD
+   ===================================================== */
+
+.weather-card {
+    padding: 28px;
+
+    background: #ffffff;
+    border: 1px solid #e2ebe5;
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+.weather-main {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.weather-location {
+    margin: 0 0 8px;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.weather-temperature {
+    color: #173f35;
+    font-size: 2.7rem;
+    font-weight: 700;
+}
+
+.weather-condition {
+    margin-top: 5px;
+    color: #527067;
+    text-transform: capitalize;
+}
+
+.weather-icon {
+    font-size: 3.5rem;
+}
+
+.weather-details {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin-top: 25px;
+}
+
+.weather-detail {
+    padding: 15px;
+    background: #f7faf8;
+    border-radius: 12px;
+    color: #6b7280;
+    font-size: 0.8rem;
+}
+
+.weather-detail strong {
+    display: block;
+    margin-top: 5px;
+    color: #285747;
+    font-size: 0.95rem;
+}
+
+
+/* =====================================================
+   FORECAST
+   ===================================================== */
+
+.forecast-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 14px;
+}
+
+.forecast-card {
+    padding: 20px 15px;
+
+    text-align: center;
+
+    background: #ffffff;
+    border: 1px solid #e2ebe5;
+    border-radius: 16px;
+
+    box-shadow: 0 8px 22px rgba(0, 0, 0, 0.04);
+}
+
+.forecast-date {
+    color: #6b7280;
+    font-size: 0.78rem;
+    font-weight: 600;
+}
+
+.forecast-icon {
+    margin: 12px 0;
+    font-size: 2rem;
+}
+
+.forecast-card h3 {
+    margin: 0;
+    color: #173f35;
+    font-size: 1.4rem;
+}
+
+.forecast-card p {
+    min-height: 35px;
+    color: #6b7280;
+    font-size: 0.8rem;
+}
+
+.forecast-details {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    color: #527067;
+    font-size: 0.7rem;
+}
+
+
+/* =====================================================
+   RESULTS HEADER
+   ===================================================== */
+
+.results-header {
+    margin: 45px 0 20px;
+}
+
+.results-header h2 {
+    margin: 0;
+    color: #173f35;
+    font-size: 2rem;
+}
+
+.results-header p:last-child {
+    color: #6b7280;
+}
+
+
+/* =====================================================
+   ADVISORIES
+   ===================================================== */
+
+.weather-advisory,
+.forecast-advisory {
+    margin-top: 18px;
+    padding: 20px 22px;
+
+    background: #f7faf8;
+    border: 1px solid #dfeae3;
+    border-radius: 15px;
+}
+
+.weather-advisory h3,
+.forecast-advisory h3 {
+    margin: 0 0 8px;
+    color: #285747;
+    font-size: 1rem;
+}
+
+.weather-advisory p,
+.forecast-advisory p {
+    margin: 0;
+    color: #5f7169;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   CROP RESULTS
+   ===================================================== */
+
+.crop-results {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+
+/* =====================================================
+   CROP CARD
+   ===================================================== */
+
+.crop-card {
+    display: flex;
+    gap: 20px;
+
+    padding: 25px;
+
+    background: #ffffff;
+    border: 1px solid #e2ebe5;
+    border-radius: 20px;
+
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+
+    transition: 0.2s ease;
+}
+
+.crop-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 14px 35px rgba(0, 0, 0, 0.07);
+}
+
+.crop-ranking {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 45px;
+    height: 45px;
+
+    border-radius: 12px;
+
+    background: #edf7f1;
+    color: #285747;
+
+    font-weight: 700;
+}
+
+.crop-info {
+    flex: 1;
+}
+
+.crop-info h3 {
+    margin: 0;
+    color: #173f35;
+    font-size: 1.3rem;
+}
+
+.crop-info > p {
+    margin: 8px 0 15px;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   COMPATIBILITY
+   ===================================================== */
+
+.compatibility {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+.compatibility strong {
+    color: #285747;
+    font-size: 1.7rem;
+}
+
+.compatibility span {
+    color: #6b7280;
+    font-size: 0.85rem;
+}
+
+
+/* =====================================================
+   FACTORS
+   ===================================================== */
+
+.factor-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+}
+
+.factor {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+
+    padding: 10px 12px;
+
+    background: #f7faf8;
+    border-radius: 9px;
+
+    color: #527067;
+    font-size: 0.8rem;
+}
+
+.factor span:last-child {
+    font-weight: 600;
+}
+
+
+/* =====================================================
+   EMPTY / ERROR / LOADING
+   ===================================================== */
+
+.loading-message,
+.error-message,
+.no-results {
+    padding: 30px;
+
+    text-align: center;
+
+    background: #ffffff;
+    border-radius: 16px;
+
+    color: #6b7280;
+}
+
+.error-message {
+    color: #b91c1c;
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+}
+
+.no-results h3 {
+    margin-top: 0;
+    color: #173f35;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 850px) {
+
+    .forecast-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .weather-details {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .recommendation-section {
+        padding: 45px 20px;
+    }
+
+    .recommendation-form {
+        grid-template-columns: 1fr;
+        padding: 22px;
+    }
+
+    .primary-btn {
+        grid-column: auto;
+    }
+
+    .weather-main {
+        align-items: flex-start;
+    }
+
+    .weather-icon {
+        font-size: 2.5rem;
+    }
+
+    .weather-details {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .forecast-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .crop-card {
+        flex-direction: column;
+    }
+
+    .factor-list {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 420px) {
+
+    .weather-details {
+        grid-template-columns: 1fr;
+    }
+
+    .weather-temperature {
+        font-size: 2.2rem;
+    }
+
+}

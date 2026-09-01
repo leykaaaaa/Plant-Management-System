@@ -1,0 +1,241 @@
+/* =====================================================
+   BUILD & BLOOM - PLANTING CALENDAR
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+.calendar-page {
+    min-height: calc(100vh - 70px);
+    padding: 70px 8%;
+    background: #f5f8f5;
+}
+
+
+/* =====================================================
+   HEADING
+   ===================================================== */
+
+.calendar-heading {
+    max-width: 750px;
+    margin: 0 auto 50px;
+    text-align: center;
+}
+
+.calendar-heading h1 {
+    margin: 0;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    line-height: 1.15;
+    color: #173f35;
+}
+
+.calendar-heading p:last-child {
+    margin-top: 15px;
+    color: #6b7280;
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   CONTENT
+   ===================================================== */
+
+.calendar-content {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+
+/* =====================================================
+   GRID
+   ===================================================== */
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+
+/* =====================================================
+   CARD
+   ===================================================== */
+
+.calendar-card {
+    display: flex;
+    gap: 20px;
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #e2ebe5;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+    transition: 0.25s ease;
+}
+
+.calendar-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.calendar-card-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 58px;
+    height: 58px;
+
+    border-radius: 16px;
+
+    background: #edf7f1;
+
+    font-size: 1.8rem;
+}
+
+.calendar-card-content {
+    flex: 1;
+}
+
+.calendar-card h2 {
+    margin: 0;
+    color: #173f35;
+    font-size: 1.25rem;
+}
+
+.calendar-location {
+    margin: 7px 0 20px;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+
+/* =====================================================
+   INFORMATION
+   ===================================================== */
+
+.calendar-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+}
+
+.calendar-info-item {
+    padding: 13px;
+    background: #f7faf8;
+    border-radius: 12px;
+}
+
+.calendar-info-item span {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 0.7rem;
+    color: #6b7280;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.calendar-info-item strong {
+    display: block;
+    font-size: 0.9rem;
+    color: #285747;
+}
+
+
+/* =====================================================
+   STATES
+   ===================================================== */
+
+.calendar-message,
+.calendar-error,
+.calendar-empty {
+    max-width: 650px;
+    margin: 0 auto;
+    padding: 35px;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 18px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+}
+
+.calendar-message {
+    color: #527067;
+}
+
+.calendar-error {
+    background: #fff5f5;
+    border: 1px solid #fecaca;
+    color: #b91c1c;
+}
+
+.calendar-empty-icon {
+    margin-bottom: 15px;
+    font-size: 3rem;
+}
+
+.calendar-empty h2 {
+    margin: 0;
+    color: #173f35;
+}
+
+.calendar-empty p {
+    margin-top: 10px;
+    color: #6b7280;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   FOOTER LINK
+   ===================================================== */
+
+.calendar-footer {
+    max-width: 1100px;
+    margin: 40px auto 0;
+}
+
+.back-link {
+    color: #2563eb;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 800px) {
+
+    .calendar-page {
+        padding: 50px 5%;
+    }
+
+    .calendar-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 550px) {
+
+    .calendar-page {
+        padding: 40px 20px;
+    }
+
+    .calendar-card {
+        flex-direction: column;
+    }
+
+    .calendar-info {
+        grid-template-columns: 1fr;
+    }
+
+}

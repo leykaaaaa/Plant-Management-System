@@ -1,0 +1,464 @@
+
+/* ==========================================
+   CROP DETAILS PAGE
+========================================== */
+
+.crop-details-page {
+    min-height: calc(100vh - 70px);
+    padding: 45px 7% 80px;
+    background: #f8faf9;
+}
+
+
+/* ==========================================
+   TOP
+========================================== */
+
+.crop-details-top {
+    max-width: 1100px;
+    margin: 0 auto 25px;
+}
+
+.back-link {
+    color: #486453;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    color: #285c3c;
+}
+
+
+/* ==========================================
+   HERO
+========================================== */
+
+.crop-details-hero {
+    max-width: 1100px;
+    margin: 0 auto 55px;
+
+    display: flex;
+    align-items: center;
+    gap: 35px;
+
+    padding: 45px;
+
+    background: white;
+
+    border: 1px solid #e1e9e4;
+    border-radius: 22px;
+
+    box-shadow:
+        0 10px 30px rgba(25, 60, 42, 0.06);
+}
+
+.crop-details-icon {
+    width: 150px;
+    height: 150px;
+
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 20px;
+
+    background: #edf6ef;
+
+    font-size: 65px;
+}
+
+.crop-details-hero-content h1 {
+    margin: 8px 0 12px;
+
+    color: #173b2a;
+
+    font-size: 46px;
+}
+
+.crop-details-hero-content > p:last-child {
+    max-width: 700px;
+
+    margin: 0;
+
+    color: #65746b;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   SECTIONS
+========================================== */
+
+.crop-details-section {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+}
+
+.section-heading {
+    margin-bottom: 28px;
+}
+
+.section-heading h2 {
+    margin: 8px 0 10px;
+
+    color: #173b2a;
+
+    font-size: 30px;
+}
+
+.section-heading > p:last-child {
+    max-width: 700px;
+
+    margin: 0;
+
+    color: #6c7b72;
+
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   GROWTH INFORMATION
+========================================== */
+
+.growth-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+}
+
+.growth-card {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+
+    padding: 25px;
+
+    background: white;
+
+    border: 1px solid #e1e9e4;
+    border-radius: 16px;
+}
+
+.growth-icon {
+    width: 55px;
+    height: 55px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 13px;
+
+    background: #edf6ef;
+
+    font-size: 27px;
+}
+
+.growth-card span:not(.growth-icon) {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #7a877f;
+
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.growth-card strong {
+    color: #294936;
+    font-size: 17px;
+}
+
+
+/* ==========================================
+   REQUIREMENTS
+========================================== */
+
+.requirements-grid {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 18px;
+}
+
+.requirement-card {
+    padding: 25px;
+
+    background: white;
+
+    border: 1px solid #e1e9e4;
+    border-radius: 16px;
+}
+
+.requirement-icon {
+    width: 48px;
+    height: 48px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 18px;
+
+    border-radius: 12px;
+
+    background: #edf6ef;
+
+    font-size: 23px;
+}
+
+.requirement-card span {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #7a877f;
+
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.requirement-card strong {
+    color: #294936;
+
+    font-size: 16px;
+
+    line-height: 1.5;
+
+    text-transform: capitalize;
+}
+
+
+/* ==========================================
+   EMPTY REQUIREMENTS
+========================================== */
+
+.requirements-empty {
+    padding: 40px;
+
+    background: white;
+
+    border: 1px solid #e1e9e4;
+    border-radius: 16px;
+
+    text-align: center;
+}
+
+.requirements-empty span {
+    font-size: 40px;
+}
+
+.requirements-empty p {
+    margin: 12px 0 0;
+
+    color: #718078;
+}
+
+
+/* ==========================================
+   ACTIONS
+========================================== */
+
+.crop-details-actions {
+    max-width: 1100px;
+    margin: 20px auto 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 35px;
+
+    padding: 35px 40px;
+
+    background: #edf6ef;
+
+    border-radius: 20px;
+}
+
+.crop-details-actions h2 {
+    margin: 7px 0 8px;
+
+    color: #173b2a;
+
+    font-size: 27px;
+}
+
+.crop-details-actions p:last-child {
+    margin: 0;
+
+    color: #64756b;
+
+    line-height: 1.6;
+}
+
+.crop-action-buttons {
+    display: flex;
+    gap: 12px;
+
+    flex-shrink: 0;
+}
+
+
+/* ==========================================
+   BUTTONS
+========================================== */
+
+.primary-btn,
+.secondary-btn {
+    display: inline-block;
+
+    padding: 13px 20px;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+}
+
+.primary-btn {
+    border: none;
+
+    background: #285c3c;
+    color: white;
+}
+
+.primary-btn:hover {
+    background: #1f4b31;
+    transform: translateY(-1px);
+}
+
+.secondary-btn {
+    border: 1px solid #b8cabe;
+
+    background: white;
+    color: #285c3c;
+}
+
+.secondary-btn:hover {
+    background: #f5faf6;
+}
+
+
+/* ==========================================
+   MESSAGES
+========================================== */
+
+.crop-details-message,
+.crop-details-error {
+    max-width: 700px;
+    margin: 80px auto;
+
+    padding: 45px;
+
+    background: white;
+
+    border: 1px solid #e1e9e4;
+    border-radius: 18px;
+
+    text-align: center;
+}
+
+.crop-details-message {
+    color: #54705d;
+}
+
+.crop-details-error-icon {
+    margin-bottom: 12px;
+    font-size: 42px;
+}
+
+.crop-details-error h2 {
+    margin: 0 0 10px;
+    color: #294936;
+}
+
+.crop-details-error p {
+    margin: 0 0 25px;
+    color: #718078;
+    line-height: 1.6;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+
+    .crop-details-hero {
+        padding: 35px;
+    }
+
+    .requirements-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .crop-details-actions {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .crop-details-page {
+        padding: 35px 5% 60px;
+    }
+
+    .crop-details-hero {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 28px;
+    }
+
+    .crop-details-icon {
+        width: 100px;
+        height: 100px;
+        font-size: 45px;
+    }
+
+    .crop-details-hero-content h1 {
+        font-size: 35px;
+    }
+
+    .growth-grid,
+    .requirements-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .crop-details-actions {
+        padding: 28px;
+    }
+
+    .crop-action-buttons {
+        width: 100%;
+        flex-direction: column;
+    }
+
+    .crop-action-buttons a {
+        width: 100%;
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+}
+

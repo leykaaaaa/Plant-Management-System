@@ -1,0 +1,269 @@
+
+/* =====================================================
+   BUILD & BLOOM - LOGIN
+   ===================================================== */
+
+.auth-page {
+    min-height: 100vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 40px 20px;
+
+    background: #f5f8f5;
+}
+
+
+/* =====================================================
+   CARD
+   ===================================================== */
+
+.auth-card {
+    width: 100%;
+    max-width: 450px;
+
+    padding: 42px;
+
+    background: #ffffff;
+
+    border: 1px solid #e2ebe5;
+    border-radius: 24px;
+
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.07);
+}
+
+
+/* =====================================================
+   HEADER
+   ===================================================== */
+
+.auth-header {
+    margin-bottom: 32px;
+
+    text-align: center;
+}
+
+.auth-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    background: #edf7f1;
+
+    font-size: 1.8rem;
+}
+
+.auth-header .eyebrow {
+    margin: 0 0 8px;
+
+    color: #4f8068;
+
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+}
+
+.auth-header h1 {
+    margin: 0;
+
+    color: #173f35;
+
+    font-size: 2rem;
+    line-height: 1.2;
+}
+
+.auth-header > p:last-child {
+    margin: 12px 0 0;
+
+    color: #6b7280;
+
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   FORM
+   ===================================================== */
+
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+}
+
+.form-group label {
+    color: #285747;
+
+    font-size: 0.82rem;
+    font-weight: 600;
+}
+
+.form-group input {
+    width: 100%;
+
+    padding: 13px 14px;
+
+    border: 1px solid #d7e3dc;
+    border-radius: 10px;
+
+    background: #f9fbfa;
+    color: #285747;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+
+    outline: none;
+
+    transition: 0.2s ease;
+}
+
+.form-group input::placeholder {
+    color: #9ca9a3;
+}
+
+.form-group input:focus {
+    border-color: #5d9275;
+
+    background: #ffffff;
+
+    box-shadow:
+        0 0 0 3px rgba(93, 146, 117, 0.12);
+}
+
+
+/* =====================================================
+   BUTTON
+   ===================================================== */
+
+.primary-btn {
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 14px 20px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #285747;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.primary-btn:hover:not(:disabled) {
+    background: #1f4638;
+
+    transform: translateY(-1px);
+}
+
+.primary-btn:active:not(:disabled) {
+    transform: translateY(0);
+}
+
+.primary-btn:disabled {
+    opacity: 0.65;
+
+    cursor: not-allowed;
+}
+
+
+/* =====================================================
+   ERROR
+   ===================================================== */
+
+.error-message {
+    margin-bottom: 18px;
+
+    padding: 12px 14px;
+
+    border: 1px solid #fecaca;
+    border-radius: 10px;
+
+    background: #fff5f5;
+    color: #b91c1c;
+
+    font-size: 0.82rem;
+    line-height: 1.5;
+}
+
+
+/* =====================================================
+   FOOTER
+   ===================================================== */
+
+.auth-footer {
+    margin-top: 25px;
+
+    padding-top: 22px;
+
+    border-top: 1px solid #edf1ee;
+
+    text-align: center;
+}
+
+.auth-footer p {
+    margin: 0;
+
+    color: #6b7280;
+
+    font-size: 0.85rem;
+}
+
+.auth-footer a {
+    color: #285747;
+
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    .auth-page {
+        padding: 25px 15px;
+    }
+
+    .auth-card {
+        padding: 32px 22px;
+
+        border-radius: 18px;
+    }
+
+    .auth-header h1 {
+        font-size: 1.8rem;
+    }
+
+}
+

@@ -1,0 +1,323 @@
+
+/* ==========================================
+   CROP CATALOGUE
+========================================== */
+
+.catalogue-page {
+    min-height: calc(100vh - 70px);
+    padding: 70px 7% 80px;
+    background: #f8faf9;
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.catalogue-heading {
+    max-width: 760px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.catalogue-heading h1 {
+    margin: 10px 0 16px;
+    font-size: 42px;
+    line-height: 1.2;
+    color: #173b2a;
+}
+
+.catalogue-heading > p:last-child {
+    margin: 0 auto;
+    max-width: 620px;
+    color: #64756b;
+    font-size: 16px;
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   SEARCH
+========================================== */
+
+.catalogue-tools {
+    max-width: 850px;
+    margin: 0 auto 45px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    background: white;
+    border: 1px solid #dce5df;
+    border-radius: 14px;
+
+    padding: 0 18px;
+
+    box-shadow: 0 5px 20px rgba(25, 60, 42, 0.06);
+}
+
+.search-box span {
+    font-size: 20px;
+}
+
+.search-box input {
+    width: 100%;
+    border: none;
+    outline: none;
+
+    padding: 17px 5px;
+
+    background: transparent;
+
+    font-size: 15px;
+    color: #26372d;
+}
+
+.search-box input::placeholder {
+    color: #9aa89f;
+}
+
+
+/* ==========================================
+   GRID
+========================================== */
+
+.crop-catalogue-grid {
+    max-width: 1200px;
+    margin: 0 auto;
+
+    display: grid;
+    grid-template-columns:
+        repeat(3, minmax(0, 1fr));
+
+    gap: 24px;
+}
+
+
+/* ==========================================
+   CARD
+========================================== */
+
+.catalogue-card {
+    background: white;
+
+    border: 1px solid #e1e9e4;
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow:
+        0 8px 25px rgba(25, 60, 42, 0.06);
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.catalogue-card:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(25, 60, 42, 0.11);
+}
+
+
+/* ==========================================
+   CARD ICON
+========================================== */
+
+.catalogue-card-icon {
+    height: 150px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #edf6ef;
+
+    font-size: 58px;
+}
+
+
+/* ==========================================
+   CARD BODY
+========================================== */
+
+.catalogue-card-body {
+    padding: 25px;
+}
+
+.catalogue-card-body h2 {
+    margin: 0 0 10px;
+
+    font-size: 23px;
+    color: #173b2a;
+}
+
+.catalogue-description {
+    min-height: 70px;
+
+    margin: 0 0 22px;
+
+    color: #6a786f;
+
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+
+/* ==========================================
+   META
+========================================== */
+
+.catalogue-meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+
+    gap: 12px;
+
+    margin-bottom: 22px;
+}
+
+.catalogue-meta div {
+    padding: 13px;
+
+    background: #f6f9f7;
+
+    border-radius: 10px;
+}
+
+.catalogue-meta span {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: #829087;
+
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.catalogue-meta strong {
+    color: #31533f;
+    font-size: 13px;
+}
+
+
+/* ==========================================
+   BUTTON
+========================================== */
+
+.catalogue-btn {
+    display: block;
+
+    width: 100%;
+
+    padding: 13px;
+
+    border-radius: 10px;
+
+    background: #285c3c;
+    color: white;
+
+    text-align: center;
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease;
+}
+
+.catalogue-btn:hover {
+    background: #1f4b31;
+}
+
+
+/* ==========================================
+   MESSAGES
+========================================== */
+
+.catalogue-message,
+.catalogue-error,
+.catalogue-empty {
+    max-width: 700px;
+    margin: 30px auto;
+
+    padding: 40px;
+
+    border-radius: 16px;
+
+    background: white;
+
+    text-align: center;
+
+    border: 1px solid #e1e9e4;
+}
+
+.catalogue-message {
+    color: #54705d;
+}
+
+.catalogue-error {
+    color: #b42318;
+    background: #fff5f4;
+    border-color: #f0c8c4;
+}
+
+.catalogue-empty-icon {
+    margin-bottom: 15px;
+    font-size: 45px;
+}
+
+.catalogue-empty h2 {
+    margin: 0 0 10px;
+    color: #294936;
+}
+
+.catalogue-empty p {
+    margin: 0;
+    color: #718078;
+    line-height: 1.6;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 950px) {
+
+    .crop-catalogue-grid {
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 650px) {
+
+    .catalogue-page {
+        padding: 45px 5% 60px;
+    }
+
+    .catalogue-heading h1 {
+        font-size: 32px;
+    }
+
+    .crop-catalogue-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .catalogue-meta {
+        grid-template-columns: 1fr;
+    }
+
+}

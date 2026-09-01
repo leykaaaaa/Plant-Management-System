@@ -1,0 +1,238 @@
+/* =====================================================
+   BUILD & BLOOM - PROFILE
+   ===================================================== */
+
+* {
+    box-sizing: border-box;
+}
+
+.profile-page {
+    min-height: calc(100vh - 70px);
+    padding: 70px 8%;
+    background: #f5f8f5;
+}
+
+
+/* =====================================================
+   HEADING
+   ===================================================== */
+
+.profile-heading {
+    max-width: 700px;
+    margin: 0 auto 45px;
+    text-align: center;
+}
+
+.profile-heading h1 {
+    margin: 0;
+    font-size: clamp(2.2rem, 5vw, 3.3rem);
+    line-height: 1.15;
+    color: #173f35;
+}
+
+.profile-heading p:last-child {
+    margin-top: 14px;
+    color: #6b7280;
+    line-height: 1.7;
+}
+
+
+/* =====================================================
+   PROFILE CONTAINER
+   ===================================================== */
+
+.profile-container {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* =====================================================
+   PROFILE CARD
+   ===================================================== */
+
+.profile-card {
+    width: 100%;
+    max-width: 650px;
+    padding: 40px;
+    background: #ffffff;
+    border: 1px solid #e2ebe5;
+    border-radius: 24px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =====================================================
+   AVATAR
+   ===================================================== */
+
+.profile-avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 90px;
+    height: 90px;
+
+    margin: 0 auto 18px;
+
+    border-radius: 50%;
+
+    background: #edf7f1;
+    color: #285747;
+
+    font-size: 2.2rem;
+    font-weight: 700;
+}
+
+
+/* =====================================================
+   PROFILE TITLE
+   ===================================================== */
+
+.profile-title {
+    text-align: center;
+    margin-bottom: 35px;
+}
+
+.profile-title h2 {
+    margin: 0;
+    color: #173f35;
+    font-size: 1.7rem;
+}
+
+.profile-title p {
+    margin: 6px 0 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+
+/* =====================================================
+   INFORMATION
+   ===================================================== */
+
+.profile-information {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.profile-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 17px;
+
+    background: #f7faf8;
+    border: 1px solid #edf1ee;
+    border-radius: 14px;
+}
+
+.profile-item-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    flex-shrink: 0;
+
+    width: 42px;
+    height: 42px;
+
+    border-radius: 11px;
+
+    background: #ffffff;
+
+    font-size: 1.1rem;
+}
+
+.profile-item div {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+.profile-item small {
+    color: #6b7280;
+    font-size: 0.72rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.profile-item strong {
+    color: #285747;
+    font-size: 0.95rem;
+    word-break: break-word;
+}
+
+
+/* =====================================================
+   ACTIONS
+   ===================================================== */
+
+.profile-actions {
+    display: flex;
+    gap: 12px;
+    margin-top: 30px;
+}
+
+.profile-btn {
+    flex: 1;
+
+    padding: 13px 20px;
+
+    border-radius: 10px;
+
+    font-family: inherit;
+    font-size: 0.9rem;
+    font-weight: 600;
+
+    text-align: center;
+    text-decoration: none;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.profile-btn.secondary {
+    background: #edf7f1;
+    color: #285747;
+    border: 1px solid #dcebe1;
+}
+
+.profile-btn.secondary:hover {
+    background: #e3f1e9;
+}
+
+.profile-btn.logout {
+    background: #fff5f5;
+    color: #b91c1c;
+    border: 1px solid #fecaca;
+}
+
+.profile-btn.logout:hover {
+    background: #fee2e2;
+}
+
+
+/* =====================================================
+   RESPONSIVE
+   ===================================================== */
+
+@media (max-width: 600px) {
+
+    .profile-page {
+        padding: 45px 20px;
+    }
+
+    .profile-card {
+        padding: 28px 20px;
+    }
+
+    .profile-actions {
+        flex-direction: column;
+    }
+
+}
