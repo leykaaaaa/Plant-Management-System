@@ -268,7 +268,7 @@ function Weather() {
 
                 {loading && (
                     <div className="weather-message">
-                        🌦️ Loading weather...
+                        Loading weather...
                     </div>
                 )}
 
